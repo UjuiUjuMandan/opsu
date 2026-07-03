@@ -37,6 +37,14 @@ public class AndroidLauncher extends AndroidApplication {
 			public File getDownloadDir() {
 				return new File(new FileHandle(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)));
 			}
+
+			@Override
+			public String getStorageDir() {
+				java.io.File dir = AndroidLauncher.this.getExternalFilesDir(null);
+				if (dir == null)
+					dir = AndroidLauncher.this.getFilesDir();
+				return dir.getAbsolutePath();
+			}
 		};
 		initialize(new GameOpsu(), config);
 	}
